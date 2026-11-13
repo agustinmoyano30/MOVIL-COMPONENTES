@@ -1,36 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.titulo}>
+        Datos personales
+      </Text>
+
+      <Text style={styles.etiqueta}>Nombre completo</Text>
       <TextInput
-        placeholder="Ingrese su Email"
-        placeholderTextColor="#808080"
-        autoCapitalize="words"
-        keyboardType="phone-pad"
         style={styles.input}
+        placeholder="Ingrese su nombre"
+        autoCapitalize="words"
       />
-      <TextInput inputMode="email"
-      />
+
+      <Text style={styles.etiqueta}>Correo electrónico</Text>
       <TextInput
-      placeholder="Ingrese su Contraseña"
-      secureTextEntry={true}
+        style={styles.input}
+        placeholder="usuario@correo.com"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        autoCorrect={false}
       />
+
+      <Text style={styles.etiqueta}>Teléfono</Text>
       <TextInput
-      placeholder="Escriba una Descripción"
-      multiline={true}
-      numerOfLines={4}
-      textAlignVertical="top"
-      maxLength={100}
-      value="Dato de Ejemplo"
-      editable={false}
-      autoCorrect={false}
-      autoComplete="email"
-      style={styles.descripcion}
+        style={styles.input}
+        placeholder="Ingrese su teléfono"
+        keyboardType="phone-pad"
       />
-      <StatusBar style="auto" />
+
+      <Text style={styles.etiqueta}>Contraseña</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Ingrese su contraseña"
+        secureTextEntry={true}
+      />
     </View>
   );
 }
@@ -38,18 +43,30 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 24,
+    paddingTop: 60,
+    backgroundColor: '#F8F6F0',
   },
-    input: {
-    width: '100%',
-    height:52,
+  titulo: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#291334',
+    marginBottom: 24,
+  },
+  etiqueta: {
+    fontSize: 15,
+    fontWeight: '600',
+    marginBottom: 8,
+    color: '#291334',
+  },
+  input: {
+    height: 52,
     borderWidth: 1,
-    borderColor: '#CCCCCCCC',
+    borderColor: '#BBBBBB',
     borderRadius: 10,
-    paddingHorizontal: 15,
+    paddingHorizontal: 14,
+    backgroundColor: '#FFFFFF',
+    marginBottom: 18,
     fontSize: 16,
-    backgroungColor: '#FFFFFFFF'
-    }
+  },
 });
