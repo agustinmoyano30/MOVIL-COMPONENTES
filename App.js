@@ -1,11 +1,11 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Pressable, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>
-        Datos personales
-      </Text>
+      <StatusBar barStyle="dark-content" />
+
+      <Text style={styles.titulo}>Datos personales</Text>
 
       <Text style={styles.etiqueta}>Nombre completo</Text>
       <TextInput
@@ -36,6 +36,13 @@ export default function App() {
         placeholder="Ingrese su contraseña"
         secureTextEntry={true}
       />
+
+      <Pressable
+        style={({ pressed }) => [styles.boton, pressed && styles.botonPresionado]}
+        onPress={() => Alert.alert('Botón presionado!')}
+      >
+        <Text style={styles.textoBoton}>Enviar</Text>
+      </Pressable>
     </View>
   );
 }
@@ -68,5 +75,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     marginBottom: 18,
     fontSize: 16,
+  },
+  boton: {
+    backgroundColor: '#291334',
+    height: 52,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  botonPresionado: {
+    opacity: 0.8,
+  },
+  textoBoton: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
