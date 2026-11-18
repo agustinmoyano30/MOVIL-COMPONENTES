@@ -1,8 +1,8 @@
-import { Alert, Pressable, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Pressable, StatusBar, StyleSheet, Text, TextInput, View, ScrollView } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <StatusBar barStyle="dark-content" />
 
       <Text style={styles.titulo}>Datos personales</Text>
@@ -37,19 +37,29 @@ export default function App() {
         secureTextEntry={true}
       />
 
+      {/* 1. Botón con hitSlop (prueba presionar alrededor del botón) */}
       <Pressable
-        style={({ pressed }) => [styles.boton, pressed && styles.botonPresionado]}
-        onPress={() => Alert.alert('Botón presionado!')}
+        style={styles.boton}
+        hitSlop={{ top: 15, bottom: 15, left: 20, right: 20 }} // o hitSlop={50}
+        onPress={() => Alert.alert('Información', '¡Botón presionado con hitSlop!')}
       >
-        <Text style={styles.textoBoton}>Enviar</Text>
+        <Text style={styles.textoBoton}>Presionar (Activo)</Text>
       </Pressable>
-    </View>
+
+      {/* 2. Botón con disabled (no ejecuta la alerta) */}
+      <Pressable
+        disabled={true}
+        style={styles.button_desabled}
+        onPress={() => Alert.alert('Alerta', 'No debería ejecutarse')}
+      >
+        <Text style={styles.textoBotonDeshabilitado}>Acción deshabilitada</Text>
+      </Pressable>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 24,
     paddingTop: 60,
     backgroundColor: '#F8F6F0',
@@ -76,20 +86,32 @@ const styles = StyleSheet.create({
     marginBottom: 18,
     fontSize: 16,
   },
+
+  // Estilos del botón activo
   boton: {
-    backgroundColor: '#291334',
-    height: 52,
-    borderRadius: 10,
-    justifyContent: 'center',
+    backgroundColor: 'blue',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
     alignItems: 'center',
-    marginTop: 10,
-  },
-  botonPresionado: {
-    opacity: 0.8,
+    marginBottom: 16,
   },
   textoBoton: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
+  },
+
+  // Estilos del botón deshabilitado (de tus capturas)
+  button_desabled: {
+    backgroundColor: '#CCCCCC',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  textoBotonDeshabilitado: {
+    color: '#666666',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
